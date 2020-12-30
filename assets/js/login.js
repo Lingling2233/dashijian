@@ -39,4 +39,23 @@ $(function () {
             }
         })
     })
+    // 监听登录表单的提交事件
+    $("#zhucef").submit(function (e) {
+        e.preventDefault()
+        $.ajax({
+            method: "POST",
+            url: "/api/login",
+            // 快速获取form表单
+            data: $(this).serialize(),
+            success: function (res) {
+                console.log(res);
+                if (res.status !== 0) {
+                    return layer.msg("登录失败!")
+                }
+                layer.msg("登录成功!")
+                location.href = "../../index.html"
+            }
+        })
+
+    })
 })
