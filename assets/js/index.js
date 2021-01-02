@@ -19,7 +19,15 @@ function getUserInfo() {
             }
             // 调用渲染用户的头像
             renderAvatar(res.data)
+        },
+        // 不论登录成功还是失败，都会调用complete
+        completr: function (res) {
+            if (res.responseJSON.status === 1 && res.responseJSON.message === "身份认证失败") {
+                localStorage.removeItem("token")
+                location.href = "../../login.html"
+            }
         }
+
     })
 }
 function renderAvatar(user) {
@@ -55,7 +63,7 @@ $("#btnLogout").on("click", function () {
         localStorage
         // 清除本地的token
         localStorage.removeItem("token")
-        location.href ="../../login.html"
-            layer.close(index);
+        location.href = "../../login.html"
+        layer.close(index);
     });
 })
