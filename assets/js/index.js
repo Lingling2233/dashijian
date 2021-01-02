@@ -21,7 +21,7 @@ function getUserInfo() {
             renderAvatar(res.data)
         },
         // 不论登录成功还是失败，都会调用complete
-        completr: function (res) {
+        complete: function (res) {
             if (res.responseJSON.status === 1 && res.responseJSON.message === "身份认证失败") {
                 localStorage.removeItem("token")
                 location.href = "../../login.html"
